@@ -73,14 +73,15 @@ class RichTextParser {
       _document.insert(Paragraph.fromEmbed(operation));
     } else {
       final paragraph = _document.getLastSafe();
+      paragraph.type = ParagraphType.inline;
       paragraph
           .insert(Line(data: operation.data, attributes: operation.attributes));
       _document.updateLastSafe(paragraph);
     }
     _isNumberedListActive = false;
-    if (wasPreviousNewLine) {
-      _startNewParagraph();
-    }
+    // if (wasPreviousNewLine) {
+    //   _startNewParagraph();
+    // }
   }
 
   /// Inserts a formula block into the document.
